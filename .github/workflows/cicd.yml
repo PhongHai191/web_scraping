@@ -37,10 +37,10 @@ jobs:
           npm ci
 
       - name: Build backend image
-        run: docker build -t test-backend ./backend
+        run: docker build -t test-backend -f backend/Dockerfile .
 
       - name: Build crawler image
-        run: docker build -t test-crawler ./crawler
+        run: docker build -t test-crawler -f crawler/Dockerfile .
 
       - name: Build nginx image
         run: docker build -t test-nginx -f nginx/Dockerfile .
@@ -66,13 +66,13 @@ jobs:
       - name: Build & Push backend
         run: |
           IMAGE=${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/scraper-backend
-          docker build -t $IMAGE:${{ github.sha }} ./backend
+          docker build -t $IMAGE:${{ github.sha }} -f backend/Dockerfile .
           docker push $IMAGE:${{ github.sha }}
 
       - name: Build & Push crawler
         run: |
           IMAGE=${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/scraper-crawler
-          docker build -t $IMAGE:${{ github.sha }} ./crawler
+          docker build -t $IMAGE:${{ github.sha }} -f crawler/Dockerfile .
           docker push $IMAGE:${{ github.sha }}
 
       - name: Build & Push nginx
