@@ -23,7 +23,7 @@ jobs:
           test -d backend || (echo "backend missing" && exit 1)
           test -d crawler || (echo "crawler missing" && exit 1)
           test -d db || (echo "db missing" && exit 1)
-          test -f Docker-compose.yml || (echo "Docker-compose.yml missing" && exit 1)
+          test -f docker-compose.yml || (echo "đocker-compose.yml missing" && exit 1)
           test -f init.sql || (echo "init.sql missing" && exit 1)
 
       - name: Install backend deps
@@ -87,7 +87,7 @@ jobs:
           host: ${{ secrets.SERVER_IP }}
           username: ec2-user
           key: ${{ secrets.SSH_KEY }}
-          source: "Docker-compose.yml,init.sql"
+          source: "docker-compose.yml,init.sql"
           target: /home/ec2-user/scraper
 
       - name: Deploy EC2
