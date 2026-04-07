@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Scraped Products</title>
+</head>
+<body>
+  <h1>🛒 Scraped Products</h1>
+
+  <button onclick="reload()">🔄 Reload</button>
+
+  <ul id="list"></ul>
+
+  <script>
+    async function loadProducts() {
+      const res = await fetch("/api/products");
+      const data = await res.json();
+
+      const list = document.getElementById("list");
+      list.innerHTML = "";
+
+      data.forEach(p => {
+        const li = document.createElement("li");
+        li.textContent = `${p.name} - $${p.price}`;
+        list.appendChild(li);
+      });
+    }
+
+    function reload() {
+      loadProducts();
+    }
+
+    loadProducts();
+  </script>
+</body>
+</html>
