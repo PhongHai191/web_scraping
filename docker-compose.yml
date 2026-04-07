@@ -26,7 +26,7 @@ services:
 
 
   backend:
-    image: ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/scraper-backend:${TAG}
+    image: 529646246979.dkr.ecr.ap-southeast-2.amazonaws.com/scraper-backend:${TAG}
     container_name: backend
     restart: always
     environment:
@@ -43,7 +43,7 @@ services:
 
 
   worker:
-    image: ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/scraper-crawler:${TAG}
+    image: 529646246979.dkr.ecr.ap-southeast-2.amazonaws.com/scraper-crawler:${TAG}
     container_name: crawler-worker
     command: node worker/worker.js
     restart: always
@@ -61,7 +61,7 @@ services:
       - postgres
 
   scheduler:
-    image: ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/scraper-crawler:${TAG}
+    image: 529646246979.dkr.ecr.ap-southeast-2.amazonaws.com/scraper-crawler:${TAG}
     container_name: crawler-scheduler
     command: node scheduler/scheduler.js
     environment:
@@ -79,7 +79,7 @@ services:
 
 
   nginx:
-    image: ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/scraper-nginx:${TAG}
+    image: 529646246979.dkr.ecr.ap-southeast-2.amazonaws.com/scraper-nginx:${TAG}
     container_name: nginx
     ports:
       - "80:80"
