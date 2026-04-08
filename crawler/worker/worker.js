@@ -6,7 +6,6 @@ const pool = require("../db/db");
 
 let browser;
 
-// ✅ đảm bảo browser luôn sẵn sàng
 async function initBrowser() {
   if (!browser) {
     browser = await puppeteer.launch({
@@ -61,6 +60,6 @@ crawlQueue.process(5, async (job) => {
 
   } catch (err) {
     console.error(` Error scraping page ${page}:`, err.message);
-    throw err; // để Bull retry
+    throw err; 
   }
 });
